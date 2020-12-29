@@ -89,6 +89,7 @@ class Product_Detail_View(ModelViewSet):
 
         query_object = Product_Detail.objects.create(
                 RFQ_detail=Order_Detail.objects.get(RFQ_id=query['RFQ_detail']),
+                Product_id=query['Product_id'],
                 Ventor_code=query['Ventor_code'], Part_code=query['Part_code'],
                 Part_name=query['Part_name'], Casting_type=query['Casting_type'], Pattern_scope=query['Pattern_scope'],
                 Transport=query['Transport'], Painting_method=query['Painting_method'],
@@ -96,7 +97,8 @@ class Product_Detail_View(ModelViewSet):
                 Payment_terms=query['Payment_terms'], Export_required=query['Export_required'],
                 Quantity=query['Quantity'], Payments_terms_days=query['Payments_terms_days'],
                 Date=now().strftime("%Y-%m-%d")
-                , Time=now().strftime("%H:%M:%S"))
+                , Time=now().strftime("%H:%M:%S"),
+                is_feasibility=query['is_feasibility'])
         query_object.save()
         return Response("Succesfully Done!!!", status=HTTP_200_OK)
 
@@ -112,7 +114,7 @@ class Feasibility_Detail_View(ModelViewSet):
         query = request.data
         print(query)
         query_object = Feasibility_Detail.objects.create(
-        Product_detail=Product_Detail.objects.get(id=query['Product_detail']),
+        Product_detail=Product_Detail.objects.get(Product_id=query['Product_detail']),
         Drawing_readbility=query['Drawing_readbility'], Dimensional_tolerance=query['Dimensional_tolerance'],
         Cast_material=query['Cast_material'],Hardness_required=query['Hardness_required'],
         Resource_requirement=query['Resource_requirement'],Whether_all_dimensions_given=query['Whether_all_dimensions_given'],

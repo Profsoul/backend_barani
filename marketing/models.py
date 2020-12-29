@@ -36,6 +36,7 @@ class Order_Detail(models.Model):
 
 class Product_Detail(models.Model):
     RFQ_detail = models.ForeignKey(Order_Detail, on_delete=models.CASCADE)
+    Product_id = models.CharField(max_length=20,primary_key=True,default=0)
     Ventor_code = models.CharField(max_length=15,null=True)
     Part_code = models.CharField(max_length=15)
     Part_name = models.CharField(max_length=15)
@@ -51,6 +52,7 @@ class Product_Detail(models.Model):
     Quantity = models.CharField(max_length=10)
     Date = models.DateField(default = None,null=True)
     Time = models.TimeField(default = None,null=True)
+    is_feasibility = models.BooleanField(default=False)
     def __str__(self):
         return self.Part_code
 
