@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 class Customer_Detail(models.Model):
     Customer_id = models.CharField(primary_key=True,max_length=60)
     Customer_name = models.CharField(max_length=100)
@@ -54,7 +54,7 @@ class Product_Detail(models.Model):
     Time = models.TimeField(default = None,null=True)
     is_feasibility = models.BooleanField(default=False)
     def __str__(self):
-        return self.Part_code
+        return self.Product_id
 
 
 class Feasibility_Detail(models.Model):
